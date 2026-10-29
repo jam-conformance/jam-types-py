@@ -301,7 +301,10 @@ class ServiceInfo(Struct):
     type_mapping = [
         ('version', n(U8)),
         ('code_hash', 'OpaqueHash'),
+        ('supervisor', n(ServiceId)),
+        ('supervisor_creation_slot', n(TimeSlot)),
         ('balance', 'U64'),
+        ('supervisor_balance', 'U64'),
         ('min_item_gas', 'Gas'),
         ('min_memo_gas', 'Gas'),
         ('bytes', 'U64'),
