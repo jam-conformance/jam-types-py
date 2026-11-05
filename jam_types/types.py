@@ -81,12 +81,12 @@ class AvailabilityAssignments(FixedLengthArray, metaclass=spec_metaclass(type(Fi
 
 class ValidatorActivityRecord(Struct):
     type_mapping = [
-        ("blocks", n(U32)),
-        ("tickets", n(U32)),
-        ("pre_images", n(U32)),
-        ("pre_images_size", n(U32)),
-        ("guarantees", n(U32)),
-        ("assurances", n(U32)),
+        ("blocks", "Compact<U32>"),
+        ("tickets", "Compact<U32>"),
+        ("pre_images", "Compact<U32>"),
+        ("pre_images_size", "Compact<U64>"),
+        ("guarantees", "Compact<U32>"),
+        ("assurances", "Compact<U32>"),
     ]
 
 class ValidatorsStatistics(BoundedVec, metaclass=spec_metaclass(type(BoundedVec))):
@@ -301,7 +301,10 @@ class ServiceInfo(Struct):
     type_mapping = [
         ('version', n(U8)),
         ('code_hash', 'OpaqueHash'),
+        ('supervisor', n(ServiceId)),
+        ('supervisor_creation_slot', n(TimeSlot)),
         ('balance', 'U64'),
+        ('supervisor_balance', 'U64'),
         ('min_item_gas', 'Gas'),
         ('min_memo_gas', 'Gas'),
         ('bytes', 'U64'),
