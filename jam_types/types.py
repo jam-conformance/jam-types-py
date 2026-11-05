@@ -81,12 +81,12 @@ class AvailabilityAssignments(FixedLengthArray, metaclass=spec_metaclass(type(Fi
 
 class ValidatorActivityRecord(Struct):
     type_mapping = [
-        ("blocks", n(U32)),
-        ("tickets", n(U32)),
-        ("pre_images", n(U32)),
-        ("pre_images_size", n(U32)),
-        ("guarantees", n(U32)),
-        ("assurances", n(U32)),
+        ("blocks", "Compact<U32>"),
+        ("tickets", "Compact<U32>"),
+        ("pre_images", "Compact<U32>"),
+        ("pre_images_size", "Compact<U64>"),
+        ("guarantees", "Compact<U32>"),
+        ("assurances", "Compact<U32>"),
     ]
 
 class ValidatorsStatistics(BoundedVec, metaclass=spec_metaclass(type(BoundedVec))):
